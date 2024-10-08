@@ -26,9 +26,14 @@ function App() {
     getWeather()
   }, [query, units])
 
+  let cssClass = 'bg-gradient-to-r from-sky-200 to-sky-600'
+  if (units !== "metric") {
+    cssClass = 'bg-gradient-to-r from-red-200 to-orange-300'
+  }
+
 
   return (
-    <div id="container" className='rounded-md shadow-lg bg-gradient-to-r from-sky-200 to-sky-600'>
+    <div id="container" className={`rounded-md shadow-lg ${cssClass}`}>
       <DefaultButtons onQuery={handleQuery}/>
       <Input onUnit={handleUnit}/>
       {!weatherData ? <h1>WAIT FETCHING DATA...</h1> : <WeatherSection weather={weatherData}/>}

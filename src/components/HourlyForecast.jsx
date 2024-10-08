@@ -9,7 +9,7 @@ export default function HourlyForecast({title, forecast}) {
         <div className='w-full h-full flex justify-center items-center overflow-auto'>
             {forecast.map((f, index) => 
                 <div key={index} className='p-3 w-full flex flex-col justify-center items-center mx-5'>
-                    <h1 className='text-sm inline-block'>{f.title}</h1>
+                    <h1 className='text-sm'>{f.title}</h1>
                     <img src={f.icon} alt="img" />
                     <h1 className='text-xl'>{f.temp.toFixed(0)}</h1>
                 </div>

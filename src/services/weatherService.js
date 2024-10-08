@@ -65,7 +65,17 @@ function formatForecastWeather(secs, offset, data) {
         date: f.dt_txt
     }))
 
-    return {hourly}
+    const daily = data
+        .filter((f) => f.dt_txt.slice(-8) === "00:00:00")
+        .map((f) => ({
+            temp: f.main.temp,
+            wind: f.wind.speed,
+            title: formatToLocalTime(f.dt, offset, "ccc"),
+            icon: `https://openweathermap.org/img/wn/${f.weather[0].icon}@2x.png`,
+            date: f.dt_txt
+        }))
+
+    return {hourly, daily}
 }
 
 
