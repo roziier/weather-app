@@ -8,7 +8,7 @@ export default function WeatherSection({weather}) {
     <section className='p-5 flex flex-wrap justify-center items-center'>
         <MainDetails weather={weather}/>
         <SecondaryDetails weather={weather}/>
-        <ForecastSection />
+        <ForecastSection weather={weather}/>
     </section>
   )
 }

@@ -1,6 +1,6 @@
 import {BiSearch, BiCurrentLocation} from 'react-icons/bi'
 
-export default function Input() {
+export default function Input({onUnit}) {
   return (
     <div className='p-5 flex flex-wrap justify-center items-center '>
       <div className="min-[0px]:w-full md:w-2/4 lg:w-2/4">
@@ -12,9 +12,9 @@ export default function Input() {
           <BiCurrentLocation size={20} className='cursor-pointer transition ease-out hover:scale-125 hover:text-zinc-600' />
         </div>
         <div className='flex flex-row justify-start items-center'>
-          <button className='cursor-pointer transition ease-out hover:scale-125 mr-3 hover:text-zinc-600'>°C</button>
+          <button onClick={() => onUnit("metric")} className='cursor-pointer transition ease-out hover:scale-125 mr-3 hover:text-zinc-600'>°C</button>
           |
-          <button className='cursor-pointer transition ease-out hover:scale-125 ml-3 hover:text-zinc-600'>°F</button>
+          <button onClick={() => onUnit("imperial")} className='cursor-pointer transition ease-out hover:scale-125 ml-3 hover:text-zinc-600'>°F</button>
 
         </div>
       </div>

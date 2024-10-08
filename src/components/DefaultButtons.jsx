@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function DefaultButtons() {
+export default function DefaultButtons({onQuery}) {
     const DEFAULT = [
         {id: 1, city: 'Brescia'},
         {id: 2, city: 'Cork'},
@@ -12,7 +12,7 @@ export default function DefaultButtons() {
   return (
     <div className='flex flex-wrap justify-between items-center p-4'>
       {DEFAULT.map((d) => 
-        <button className="text-black p-3 hover:text-zinc-600" key={d.id}>{d.city}</button>
+        <button onClick={() => onQuery(d.city)} className="text-black p-3 hover:text-zinc-600" key={d.id}>{d.city}</button>
       ) }
     </div>
   )
