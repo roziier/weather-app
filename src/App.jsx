@@ -1,3 +1,4 @@
+import { log } from 'console'
 import DefaultButtons from './components/DefaultButtons.jsx'
 import Input from './components/Input.jsx'
 import WeatherSection from './components/WeatherSection.jsx'
@@ -32,6 +33,15 @@ function App() {
     getWeather()
   }, [query, units])
 
+  function handleLocationClick() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const {latitude, longitude} = position.coords
+        setQuery({lat: latitude, lon: longitude})
+       })
+    }
+  }
+
   let cssClass = 'bg-gradient-to-r from-sky-200 to-sky-600'
   if (units !== "metric") {
     cssClass = 'bg-gradient-to-r from-red-200 to-orange-300'
@@ -41,7 +51,7 @@ function App() {
   return (
     <div id="container" className={`rounded-md shadow-lg ${cssClass}`}>
       <DefaultButtons onQuery={handleQuery}/>
-      <Input onUnit={handleUnit}/>
+      <Input onLocation={handleLocationClick} onUnit={handleUnit} onQuery={handleQuery}/>
       {!weatherData ? <h1>WAIT FETCHING DATA...</h1> : <WeatherSection weather={weatherData}/>}
       <ToastContainer autoClose={2500} hideProgressBar={true} theme="colored"/>
     </div>
