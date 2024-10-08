@@ -12,7 +12,7 @@ export default function DefaultButtons() {
   return (
     <div className='flex flex-wrap justify-between items-center p-4'>
       {DEFAULT.map((d) => 
-        <button key={d.id}>{d.city}</button>
+        <button className="text-black p-3 hover:text-zinc-600" key={d.id}>{d.city}</button>
       ) }
     </div>
   )
