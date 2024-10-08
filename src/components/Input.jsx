@@ -1,6 +1,8 @@
 import {BiSearch, BiCurrentLocation} from 'react-icons/bi'
 
 export default function Input({onUnit}) {
+
+  
   return (
     <div className='p-5 flex flex-wrap justify-center items-center '>
       <div className="min-[0px]:w-full md:w-2/4 lg:w-2/4">

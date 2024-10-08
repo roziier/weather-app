@@ -4,6 +4,9 @@ import WeatherSection from './components/WeatherSection.jsx'
 import getFormattedWeatherData from './services/weatherService.js'
 import {useState, useEffect} from 'react'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const [query, setQuery] = useState({q: "cork"})
   const [units, setUnits] = useState("metric")
@@ -18,8 +21,11 @@ function App() {
   }
 
   const getWeather = async () => {
+    const message = query.q ? query.q : 'current location'
+    toast.info(`Fetching weather data for ${message.toUpperCase()}`)
     const data = await getFormattedWeatherData({...query, units})
     setWeatherData(data)
+    toast.success(`Fetched weather data for ${message.toUpperCase()}`)
   }
 
   useEffect(() => {
@@ -37,7 +43,7 @@ function App() {
       <DefaultButtons onQuery={handleQuery}/>
       <Input onUnit={handleUnit}/>
       {!weatherData ? <h1>WAIT FETCHING DATA...</h1> : <WeatherSection weather={weatherData}/>}
-      
+      <ToastContainer autoClose={2500} hideProgressBar={true} theme="colored"/>
     </div>
   )
 }
