@@ -20,7 +20,7 @@ const formatToLocalTime = (secs,
 function formatCurrent(data) {
     const {
         coord: {lat, lon},
-        main: {temp, feels_like, temp_min, temp_max, humidity},
+        main: {temp, feels_like, temp_min, temp_max, humidity, pressure},
         name,
         dt,
         sys: {country, sunrise, sunset},
@@ -37,6 +37,7 @@ function formatCurrent(data) {
         country,
         temp,
         feels_like,
+        pressure,
         temp_min,
         temp_max,
         humidity,
@@ -53,11 +54,31 @@ function formatCurrent(data) {
     }
 }
 
+function formatForecastWeather(secs, offset, data) {
+    const hourly = data.filter(f => f.dt > secs)
+        .slice(0,8)
+        .map((f) => ({
+        temp: f.main.temp,
+        wind: f.wind.speed,
+        title: formatToLocalTime(f.dt, offset, "hh:mm a"),
+        icon: `https://openweathermap.org/img/wn/${f.weather[0].icon}@2x.png`,
+        date: f.dt_txt
+    }))
+
+    return {hourly}
+}
+
 
 const getFormattedWeatherData = async (searchParams) => {
     const formattedCurrentWeather = await getWeatherData('weather', searchParams).then(formatCurrent)
 
-    return {...formattedCurrentWeather}
+    const {dt, lat, lon, timezone} = formattedCurrentWeather
+
+    const formattedForecastWeather = await getWeatherData('forecast', {
+        lat, lon, units: searchParams.units
+    }).then((data) => formatForecastWeather(dt, timezone, data.list))
+
+    return {...formattedCurrentWeather, ...formattedForecastWeather}
 }
 
 export default getFormattedWeatherData

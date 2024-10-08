@@ -3,11 +3,11 @@ import MainDetails from './MainDetails.jsx'
 import SecondaryDetails from './SecondaryDetails.jsx'
 import ForecastSection from './ForecastSection.jsx'
 
-export default function WeatherSection() {
+export default function WeatherSection({weather}) {
   return (
     <section className='p-5 flex flex-wrap justify-center items-center'>
-        <MainDetails />
-        <SecondaryDetails />
+        <MainDetails weather={weather}/>
+        <SecondaryDetails weather={weather}/>
         <ForecastSection />
     </section>
   )

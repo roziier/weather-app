@@ -8,13 +8,13 @@ export default function Input() {
       </div>
       <div className="min-[0px]:w-full md:w-2/4 lg:w-2/4 flex justify-between items-center p-2">
         <div className='flex flex-row justify-start items-center'>
-          <BiSearch size={20} className='cursor-pointer transition ease-out hover:scale-125 mr-3' />
-          <BiCurrentLocation size={20} className='cursor-pointer transition ease-out hover:scale-125' />
+          <BiSearch size={20} className='cursor-pointer transition ease-out hover:scale-125 mr-3 hover:text-zinc-600' />
+          <BiCurrentLocation size={20} className='cursor-pointer transition ease-out hover:scale-125 hover:text-zinc-600' />
         </div>
         <div className='flex flex-row justify-start items-center'>
-          <button className='cursor-pointer transition ease-out hover:scale-125 mr-3'>°C</button>
+          <button className='cursor-pointer transition ease-out hover:scale-125 mr-3 hover:text-zinc-600'>°C</button>
           |
-          <button className='cursor-pointer transition ease-out hover:scale-125 ml-3'>°F</button>
+          <button className='cursor-pointer transition ease-out hover:scale-125 ml-3 hover:text-zinc-600'>°F</button>
 
         </div>
       </div>
